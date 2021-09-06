@@ -1,0 +1,105 @@
+solution 1:
+D D D D L L J J G G G L L
+D D D D D D J J G G G G G
+C C D D D D J J J G G G G
+C C C C C J J J J G G B B
+C C C C C J J J B B B B B
+K K L C C L A A B B B B B
+K K K K K A A A A F F B B
+K K K K K A A A A F F F L
+I I K K E E A A L F F F F
+I I I E E E A A H H F F F
+I I I E E E E H H H H F F
+L I I I E E E H H H H H L
+L I I I E E L L L H H H L
+
+solution 2:
+D D D D L L J J G G G L L
+D D D D D D J J G G G G G
+C C D D D D J J J G G G G
+C C C C C J J J J G G B B
+C C C C C J J J B B B B B
+L E E C C L A A B B B B B
+E E E E E A A A A A L B B
+E E E E E A A A A A H H L
+I I E E K K A A L H H H L
+I I I K K K F F F H H H H
+I I I K K K F F F F H H H
+L I I I K K K F F F F H H
+L I I I K K K L F F F L L
+
+solution 3:
+D D D D L L J J G G G L L
+D D D D D D J J G G G G G
+C C D D D D J J J G G G G
+C C C C C J J J J G G B B
+C C C C C J J J B B B B B
+L E E C C L A A B B B B B
+E E E E E A A A A F F B B
+E E E E E A A A A F F F L
+I I E E K K A A L F F F F
+I I I K K K A A H H F F F
+I I I K K K L H H H H F F
+L I I I K K K H H H H H L
+L I I I K K K L L H H H L
+
+solution 4:
+D D C C C K K K G G G L L
+D D C C C K K K G G G G G
+D D D C C L K K K G G G G
+D D D C C C K K K G G B B
+L D D C C C K K B B B B B
+L D D J J L A A B B B B B
+J J J J J A A A A F F B B
+J J J J J A A A A F F F L
+I I J J E E A A L F F F F
+I I I E E E A A H H F F F
+I I I E E E E H H H H F F
+L I I I E E E H H H H H L
+L I I I E E L L L H H H L
+
+solution 5:
+D D C C C L E E G G G L L
+D D C C C E E E G G G G G
+D D D C C E E E E G G G G
+D D D C C C E E E G G B B
+L D D C C C E E B B B B B
+L D D J J L A A B B B B B
+J J J J J A A A A A L B B
+J J J J J A A A A A H H L
+I I J J K K A A L H H H L
+I I I K K K F F F H H H H
+I I I K K K F F F F H H H
+L I I I K K K F F F F H H
+L I I I K K K L F F F L L
+
+solution 6:
+D D C C C L E E G G G L L
+D D C C C E E E G G G G G
+D D D C C E E E E G G G G
+D D D C C C E E E G G B B
+L D D C C C E E B B B B B
+L D D J J L A A B B B B B
+J J J J J A A A A F F B B
+J J J J J A A A A F F F L
+I I J J K K A A L F F F F
+I I I K K K A A H H F F F
+I I I K K K L H H H H F F
+L I I I K K K H H H H H L
+L I I I K K K L L H H H L
+
+solution 7:
+L I I I K K K L F F F L L
+L I I I K K K F F F F H H
+I I I K K K F F F F H H H
+I I I K K K F F F H H H H
+I I A A K K L E E H H H L
+A A A A A E E E E E H H L
+A A A A A E E E E E J J L
+B B A A L L E E J J J J J
+B B B B B C C C J J J J J
+B B B B B C C C G G G J J
+B B D D D D C C G G G G G
+D D D D D D C C C G G G G
+D D D D L L C C C G G L L
+
