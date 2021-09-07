@@ -13,7 +13,7 @@ def rc2idx(i, j, col):
     return i * col + j
 
 mycolors = cm.get_cmap('tab20').colors
-def show_fig(index, shape):
+def show_fig(index, shape, save_path):
     """
     index: 二维list,每一行一组点的索引,这组点用同色的方块表示
     shape: (row,col),索引相关,用i=r*col+c表示二维索引(r,c)
@@ -45,6 +45,8 @@ def show_fig(index, shape):
     ax.set_yticks(range(row+1))
     # plt.axis('off')
     plt.grid()
+    fig.set_size_inches(4, 4)
+    fig.savefig(save_path)
     plt.show()
 
 def dfs(board, i, j, M, N, color, temp):
@@ -100,16 +102,16 @@ def get_index_form1(index, shape):
             index1.append(temp)
     return index1, (M1, N1)
 
-def show(board, form):
+def show(board, form, prefix):
     if not board:
-        return
+        return 0
     M = len(board)
     N = len(board[0])
     if N == 0:
-        return
+        return 0
     for row in board:
         if len(row) != N:
-            return
+            return 0
     index = []
     for i in range(M):
         for j in range(N):
@@ -117,22 +119,24 @@ def show(board, form):
                 temp = []
                 dfs(board, i, j, M, N, board[i][j], temp)
                 index.append(temp)
-    show_fig(index, (M, N))
+    show_fig(index, (M, N), prefix+'.png')
     if form == 1:
         index1, new_shape = get_index_form1(index, (M,N))
     elif form == 2:
         index1, new_shape = get_index_form2(index, (M,N))
     else:
-        return
-    show_fig(index1, new_shape)
+        return 1
+    show_fig(index1, new_shape, prefix+'_form%d.png'%form)
+    return 1
 
 def parse(file_path, form):
     with open(file_path, 'r') as f:
+        cnt = 0
         board = []
         line = f.readline()
         while line:
             if line.startswith("sol") or line.startswith('Sol'):
-                show(board, form)
+                cnt += show(board, form, file_path+'.sln%d'%(cnt+1))
                 board = []
             else:
                 line = line.strip()
@@ -144,7 +148,7 @@ def parse(file_path, form):
                         board.append(temp)
             line = f.readline()
         if board:
-            show(board, form)
+            cnt += show(board, form, file_path+'.sln%d'%(cnt+1))
 
 if len(sys.argv) > 2 and os.path.isfile(sys.argv[2]):
     parse(sys.argv[2], int(sys.argv[1]))

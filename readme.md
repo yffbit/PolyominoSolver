@@ -1,5 +1,6 @@
 # Polyomino Solver
 C++版本的 [Gerard's Polyomino Solver](https://gp.home.xs4all.nl/PolyominoSolver/downloadsolver.htm)，无 GUI。虽然 Gerard's Polyomino Solver 的年代久远，但是其速度较快。例如，在我的笔记本上30分钟内可以穷举完 [Untouchable 11](https://www.gathering4gardner.org/g4g13gift/puzzles/HoffCarl-GiftExchange-FromUntouchable11toHazmatCargo-G4G13.pdf) 的所有可能情况，找到全部7个解只需要20分钟左右，比 [DLX](https://arxiv.org/abs/cs/0011047) 算法还要快。
+
 ![Gerard's Polyomino Solver](untouchable11/untouchable11_gerard_solver.png)
 ![my solver](untouchable11/untouchable11_solver_llp.png)
 
