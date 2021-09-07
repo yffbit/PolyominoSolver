@@ -46,19 +46,12 @@ Linux
 # 附录
 Untouchable 11 第二种转化方式的7个解以及解析后的结果
 
-<figure>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln1.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln1_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln2_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln3.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln3_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln4.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln4_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln5.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln5_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln6.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln6_form2.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln7.png', width='49%'>
-<img src='untouchable11/untouchable11_form2_test.txt.ans.sln7_form2.png', width='49%'>
-</figure>
+| 转化后的解 | 原问题的解 |
+| :---------: | :---------: |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln1.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln1_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln2.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln2_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln3.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln3_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln4.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln4_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln5.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln5_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln6.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln6_form2.png) |
+| ![](untouchable11/untouchable11_form2_test.txt.ans.sln7.png) | ![](untouchable11/untouchable11_form2_test.txt.ans.sln7_form2.png) |
