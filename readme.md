@@ -46,17 +46,19 @@ Linux
 # 附录
 Untouchable 11 第二种转化方式的7个解以及解析后的结果
 
-![solution1_form2](untouchable11/solution1_form2.png)
-![solution1](untouchable11/solution1.png)
-![solution2_form2](untouchable11/solution2_form2.png)
-![solution2](untouchable11/solution2.png)
-![solution3_form2](untouchable11/solution3_form2.png)
-![solution3](untouchable11/solution3.png)
-![solution4_form2](untouchable11/solution4_form2.png)
-![solution4](untouchable11/solution4.png)
-![solution5_form2](untouchable11/solution5_form2.png)
-![solution5](untouchable11/solution5.png)
-![solution6_form2](untouchable11/solution6_form2.png)
-![solution6](untouchable11/solution6.png)
-![solution7_form2](untouchable11/solution7_form2.png)
-![solution7](untouchable11/solution7.png)
+<figure>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln1.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln1_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln2_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln3.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln3_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln4.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln4_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln5.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln5_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln6.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln6_form2.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln7.png', width='49%'>
+<img src='untouchable11/untouchable11_form2_test.txt.ans.sln7_form2.png', width='49%'>
+</figure>
