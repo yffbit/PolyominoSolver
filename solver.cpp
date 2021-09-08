@@ -104,8 +104,8 @@ struct Timer {
 
 class Solver {
 public:
-    Solver(Config& config, ofstream& out_file, int freq=0, bool smallest=false, bool info=false):
-        M(config.M), N(config.N), CheckIsoFreq(freq), AFPInSmallest(smallest), info(info),
+    Solver(Config& config, ofstream& out_file, int freq=0, bool llp=true, bool info=false):
+        M(config.M), N(config.N), CheckIsoFreq(freq), LLP(llp), info(info),
         out_file(out_file), board((M+2)*(N+2), EMPTY), liberties((M+2)*(N+2), 0) {
         pre_time = timer.now();
         // 最外层设置为WALL
@@ -138,7 +138,7 @@ private:
     ofstream& out_file;// 输出文件
     Timer timer;
     double pre_time;
-    bool AFPInSmallest;
+    bool LLP;// 是否优先求解自由度最小的方块
     bool info;// 是否显示求解过程
     int CheckIsoFreq;
     int check_cnt = 0;// 计数器
@@ -373,21 +373,19 @@ private:
             pre_time = curr_time;
             print_info(false);
         }
-        int llp = loc;
-        if(CheckIsoFreq) {
-            if(++check_cnt >= CheckIsoFreq) {
-                check_cnt = 0;
-                if(check_iso_area(loc, llp)) return;
-            }
+        int llp = loc, new_loc = loc;
+        if(CheckIsoFreq && (++check_cnt) >= CheckIsoFreq) {
+            check_cnt = 0;
+            if(check_iso_area(new_loc, llp)) return;
         }
-        else llp = find_least_liberties(loc);
+        else if(LLP) llp = find_least_liberties(new_loc);
         int n = copies.size(), around_mask = get_around_mask(llp);
         for(int i = 0; i < n; i++) {
             if(!copies[i]) continue;
             vector<Index>& around = around_idx[i][around_mask];
             vector<Piece>& piece = pieces[i];
             for(Index& idx : around) {
-                if(llp == loc && idx.square_idx) continue;// 只需要尝试每个变换形态的根索引填充llp
+                if(llp == new_loc && idx.square_idx) continue;// 只需要尝试每个变换形态的根索引填充llp
                 Piece& p = piece[idx.type_idx];
                 int offset = llp - p.locs[idx.square_idx];
                 if(!fit(p.locs, offset)) continue;
@@ -467,22 +465,27 @@ private:
         }
         return llp;
     }
-    bool check_iso_area(int loc, int& llp) {
-        int color = WALL - 1, cnt = INT_MAX;
+    bool check_iso_area(int& loc, int& llp) {// 找最小连通区域的过程中同时搜索llp
+        int color = WALL - 1, cnt = INT_MAX, temp_loc = loc, temp_llp;
         int curr_min = min_square_cnt[piece_cnt];
         new_board = board;// 复制
-        while(loc != -1) {
-            int cnt1 = dfs(loc, color, llp);
+        while(temp_loc != -1) {
+            temp_llp = temp_loc;
+            int cnt1 = dfs(temp_loc, color, temp_llp);
             if(cnt1 < curr_min) return true;
-            cnt = min(cnt, cnt1);
+            if(cnt1 < cnt) {// 找到更小的连通区域
+                cnt = cnt1;
+                loc = temp_loc;
+                llp = temp_llp;
+            }
             color--;
-            loc = find_first_loc(loc, new_board);
+            temp_loc = find_first_loc(temp_loc, new_board);
         }
         return false;
     }
     int dfs(int loc, int& color, int& llp) {// 连通区域方格个数,同时求出该区域内自由度最小的格子
         if(new_board[loc] != EMPTY) return 0;
-        if(liberties[loc] < liberties[llp]) llp = loc;
+        if(LLP && liberties[loc] < liberties[llp]) llp = loc;
         int ans = 1;
         new_board[loc] = color;
         ans += dfs(loc+ADJ_U, color, llp) + dfs(loc+ADJ_D, color, llp) + dfs(loc+ADJ_L, color, llp) + dfs(loc+ADJ_R, color, llp);
@@ -596,32 +599,30 @@ bool parse_file(const char *path, Config& config) {
 }
 
 void print_help(const char *exe) {
-    printf("%s [AFPInSmallest CheckIsoFreq] [info] file\n", exe);
-    printf("AFPInSmallest : 0 or 1. default 0. if 1, the solver always solve the smallest isolated area first\n");
-    printf("CheckIsoFreq : nonnegative integer. default 0. if positive, it defines how often the solver should check for isolated areas\n");
-    printf("info : 0 or 1. default 0. if 1, the process will be printed out\n");
-    printf("file : puzzle config file path. format: D(Dimension), P(Piece), H(Hole), e.g.\n");
+    printf("%s [LLP [CheckIsoFreq [info]]] file\n", exe);
+    printf("LLP: 0 or 1. default 1. if 1, the solver always solve the least liberties point first\n");
+    printf("CheckIsoFreq: nonnegative integer. default 0. if positive, it defines how often the solver should check for isolated areas\n");
+    printf("info: 0 or 1. default 0. if 1, the process will be printed out\n");
+    printf("file: puzzle config file path. format: D(Dimension), P(Piece), H(Hole), e.g.\n");
     printf("D:2 3\n");
     printf("P:1, 0 0, 1 0\n");
     printf("P:2, 0 0\n");
     printf("H:0 0, 1 1\n");
     printf("~D\n");
-    printf("Note : Both AFPInSmallest and CheckIsoFreq are set or omitted\n");
     exit(-1);
 }
 
 int main(int argc, char const *argv[]) {
-    if(argc != 2 && argc != 3 && argc != 5) print_help(argv[0]);
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
+    system("cls");
+#endif
+    if(argc < 2 || argc > 5) print_help(argv[0]);
     try {
-        bool smallest = false;
+        bool llp = true, info = false;
         int freq = 0;
-        bool info = false;
-        if(argc == 5) {
-            smallest = atoi(argv[1]);
-            freq = atoi(argv[2]);
-            if(smallest) freq = 1;
-        }
-        if(argc > 2) info = atoi(argv[argc-2]);
+        if(argc > 2) llp = atoi(argv[1]);
+        if(argc > 3) freq = atoi(argv[2]);
+        if(argc > 4) info = atoi(argv[3]);
         Config config;
         string path(argv[argc-1]);
         if(parse_file(path.c_str(), config)) {
@@ -632,7 +633,7 @@ int main(int argc, char const *argv[]) {
                 out_file.close();
                 exit(-1);
             }
-            Solver solver(config, out_file, freq, smallest, info);
+            Solver solver(config, out_file, freq, llp, info);
             solver.solve();
             out_file.close();
         }
